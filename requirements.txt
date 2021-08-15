@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+
+sqlalchemy
+mysqlclient
+PyMySQL
+PyMySQL[rsa]
+
+python-dotenv
+
+pytest
+requests
+pytest-cov
+
+cryptography
+
+cpf-generator
