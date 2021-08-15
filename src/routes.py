@@ -1,0 +1,7 @@
+from fastapi import APIRouter
+
+from src.controllers import cashback_controller
+
+api_router = APIRouter()
+
+api_router.include_router(cashback_controller.router, prefix='/api', tags=['products'])
