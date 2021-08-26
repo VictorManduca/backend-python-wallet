@@ -24,5 +24,8 @@ class Settings:
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
+    VALID_EMAIL: str = "mais_tod@s.com"
+    VALID_PASSWORD: str = "MeContrataNaHumilda"
+
 
 settings = Settings()

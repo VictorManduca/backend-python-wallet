@@ -15,3 +15,6 @@ uninstall_packages:
 
 run_server:
 	uvicorn src.main:app --reload
+
+run_tests:
+	pytest
