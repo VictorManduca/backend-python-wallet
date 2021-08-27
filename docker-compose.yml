@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  mysql:
+    image: mariadb:10.3
+    container_name: mariadb
+    volumes:
+      - container-volume:/var/lib/mysql
+      - ./scripts/sql/walletDB.sql:/docker-entrypoint-initdb.d/walletDB.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: walletDB
+    ports:
+      - "3306:3306"
+
+  web:
+    build:
+      context: .
+    network_mode: host
+    depends_on:
+      - mysql
+
+volumes:
+  container-volume:
