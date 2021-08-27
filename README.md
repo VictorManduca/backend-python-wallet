@@ -31,11 +31,15 @@ source walletDB.sql
 6) Se quiser rodar os testes unitários, rode no seu terminal `make run_test`
 7) Acesse `localhost:8000/docs` para acessar o Swagger do projeto onde encontrará todas as rotas implementadas
 
-## Email e senha para autenticação
+## Para usar o serviço
+### Autenticação
 ```
 username: mais_tod@s.com
 password: MeContrataNaHumilda
 ```
+
+### Tipos corretos para produtos
+Basta usar alguma letra sozinha do alfabeto, por exemplo `A`
 
 ## Cobertura dos testes
 <img align="center" src="https://github.com/VictorManduca/backend-python-wallet/blob/main/images/backend_coverage.png">
