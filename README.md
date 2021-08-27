@@ -37,4 +37,5 @@ username: mais_tod@s.com
 password: MeContrataNaHumilda
 ```
 
-## Tests coverage
+## Cobertura dos testes
+<img align="center" src="https://github.com/VictorManduca/backend-python-wallet/blob/main/images/backend_coverage.png">
