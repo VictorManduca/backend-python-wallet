@@ -56,3 +56,13 @@ def client(app: FastAPI, database_connection: SessionTesting) -> Generator[TestC
     app.dependency_overrides[get_database] = _get_test_database
     with TestClient(app) as client:
         yield client
+
+
+@pytest.fixture(scope="module")
+def normal_user_token_headers(client: TestClient):
+    data = {"username": settings.VALID_USERNAME, "password": settings.VALID_PASSWORD}
+    client_response = client.post("/api/login", data=data)
+    response = client_response.json()
+    auth_token = response["access_token"]
+
+    return {"Authorization": f"Bearer {auth_token}"}
