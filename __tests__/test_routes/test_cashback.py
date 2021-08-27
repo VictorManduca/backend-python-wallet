@@ -49,45 +49,45 @@ def _create_wrong_product_type_payload():
     return payload
 
 
-def test_create_cashback(client, mocker):
+def test_create_cashback(client, normal_user_token_headers, mocker):
     data = _create_correct_payload()
     mais_todos_response = _response_maistodos_api()
 
     mocker.patch('src.services.maistodos_service', mais_todos_response)
 
-    response = client.post("/api/cashback", json.dumps(data))
+    response = client.post("/api/cashback", json.dumps(data), headers=normal_user_token_headers)
     assert response.status_code == 201
 
 
-def test_create_cashback_wrong_document(client, mocker):
+def test_create_cashback_wrong_document(client, normal_user_token_headers, mocker):
     data = _create_wrong_document_payload()
     mais_todos_response = _response_maistodos_api()
 
     mocker.patch('src.services.maistodos_service', mais_todos_response)
 
-    response = client.post("/api/cashback", json.dumps(data))
+    response = client.post("/api/cashback", json.dumps(data), headers=normal_user_token_headers)
     assert response.status_code == 400
     assert response \
-        .json()['detail'] == 'Error: [cashback|controller] [cashback|service] Verify the given data. Some of them are invalid'
+               .json()['detail'] == 'Error: [cashback|controller] [cashback|service] Verify the given data. Some of them are invalid'
 
 
-def test_create_cashback_wrong_total_value(client, mocker):
+def test_create_cashback_wrong_total_value(client, normal_user_token_headers, mocker):
     data = _create_wrong_total_value_payload()
     mais_todos_response = _response_maistodos_api()
 
     mocker.patch('src.services.maistodos_service', mais_todos_response)
 
-    response = client.post("/api/cashback", json.dumps(data))
+    response = client.post("/api/cashback", json.dumps(data), headers=normal_user_token_headers)
     assert response.status_code == 400
     assert response.json()['detail'] == 'Error: [cashback|controller] [cashback|service] Invalid total value'
 
 
-def test_create_cashback_wrong_product_type(client, mocker):
+def test_create_cashback_wrong_product_type(client, normal_user_token_headers, mocker):
     data = _create_wrong_product_type_payload()
     mais_todos_response = _response_maistodos_api()
 
     mocker.patch('src.services.maistodos_service', mais_todos_response)
 
-    response = client.post("/api/cashback", json.dumps(data))
+    response = client.post("/api/cashback", json.dumps(data), headers=normal_user_token_headers)
     assert response.status_code == 400
     assert response.json()['detail'] == 'Error: [cashback|controller] [cashback|service] Invalid product type'
