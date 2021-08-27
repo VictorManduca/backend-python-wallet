@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from src.database.connection import get_database
 from src.dtos.requests.cashback_request import CashbackCreatePayload
 from src.dtos.responses.cashback_response import CashbackResponse
+from src.services import auth_service
 from src.services import cashback_service
 from src.services import rest_service
 
@@ -16,7 +17,11 @@ router = APIRouter()
     response_model=CashbackResponse,
     summary='Create and calculate a cashback'
 )
-def calculate_cashback(payload: CashbackCreatePayload, database: Session = Depends(get_database)):
+def calculate_cashback(
+        payload: CashbackCreatePayload,
+        database: Session = Depends(get_database),
+        token=Depends(auth_service.get_user_from_token)
+):
     try:
         saved_cashback = cashback_service.calculate_cashback(payload, database)
         return {
